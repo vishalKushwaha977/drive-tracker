@@ -20,12 +20,12 @@
     </tr>
    </thead>
    <tbody>
-     <ng-container *ngFor="let e of dataSource"> 
+     <ng-container *ngFor="let e of drive"> 
        <tr *ngIf="e.companyname==val || val==''">  
      <td>{{e.companyname}}</td>
      <td>{{e.resource}}</td>
      <td>{{e.exp}}</td>
-     <td>{{e.ctc}}</td>
+     <td>{{e.ctc}}</td>  
      <td>{{e.position|position}}</td>
      <td>{{e.joining|join}}</td>
      <td>{{e.education|educ}}</td>
