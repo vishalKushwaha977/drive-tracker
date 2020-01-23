@@ -1,0 +1,39 @@
+<h2>DRIVE-TRACKER-DETAILS</h2>
+<div fxLayout fxLayoutAlign="center center">
+  <mat-form-field fxFlex="50%">
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter by Company-Name">
+  </mat-form-field>
+</div>
+ <table>
+   <thead class="example-container">   
+     <tr>
+       <th>Company-Name</th>
+       <th>Resource</th>       
+       <th>exp-Required</th>
+       <th>ctc</th>              
+       <th>position</th>
+       <th>joining</th>
+       <th>education</th>
+       <th>followup</th>    
+       <th>bond</th>
+       <th colspan="2" style="text-align: center;">Action</th>
+    </tr>
+   </thead>
+   <tbody>
+     <ng-container *ngFor="let e of dataSource"> 
+       <tr *ngIf="e.companyname==val || val==''">  
+     <td>{{e.companyname}}</td>
+     <td>{{e.resource}}</td>
+     <td>{{e.exp}}</td>
+     <td>{{e.ctc}}</td>
+     <td>{{e.position|position}}</td>
+     <td>{{e.joining|join}}</td>
+     <td>{{e.education|educ}}</td>
+     <td >{{e.followup}}</td>
+     <td>{{e.bond|bond}}</td>
+     <td> <button Class="button" mat-raised-button color="primary"(click)="edit(e)"  (click)="openDialog()" >Edit</button></td>
+     <td><button Class="button" (click)="Delete(e.id) " mat-raised-button color="warn" >Delete</button></td>  
+    </tr>
+    </ng-container>
+   </tbody>
+ </table>
