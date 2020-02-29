@@ -1,26 +1,30 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import {HomeComponent } from './home/home.component';
 import { CreatedriveComponent } from './createdrive/createdrive.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ViwecreateDriveComponent } from './createdrive/viewcreate-drive/viewcreate-drive.component';
-import { UpdateDriveComponent } from './createdrive/viewcreate-drive/update-drive/update-drive.component';
-import { MygurdGuard } from './mygurd.guard';
+import { ViewDriveComponent } from './createdrive/view-drive/view-drive.component';
+import { UpdateDriveComponent } from './createdrive/view-drive/update-drive/update-drive.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  {path:'login',component:LoginComponent},
-  {path:'home',component:HomeComponent,canActivate:[MygurdGuard]},
-  {path:'register',component:RegisterComponent},
-  {path:'creatDrive',component:CreatedriveComponent,canActivate:[MygurdGuard]},
-  {path:'viweDrive',component:ViwecreateDriveComponent},
-  {path:'updatedrive',component:UpdateDriveComponent},
-  {path:'',redirectTo:'/login',pathMatch:'full'},
-  {path:'**',component:PageNotFoundComponent}
+  {path:"login",component:LoginComponent},
+  {path:'main',component:MainNavComponent,
+  children:[
+  {path:'home',component:HomeComponent},
+  {path: 'create',component:CreatedriveComponent},
+  {path:'view',component:ViewDriveComponent},
+  {path:'edit',component:UpdateDriveComponent},
+  {path:'Register',component:RegisterComponent},
+  {path:'',redirectTo:'/main/home',pathMatch:'full'}
+  ]},
+  //{path:'child',loadChildren:'/driveAppmodule/app-module.module#driveAppmodule'},
+  {path:'',redirectTo:'/login',pathMatch:'full'}
+
 ];
-@NgModule({   
+@NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
